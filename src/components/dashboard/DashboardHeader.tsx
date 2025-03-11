@@ -24,7 +24,14 @@ import {
   Plus,
   Search,
   Settings,
+  Bell,
 } from "lucide-react";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import NotificationCenter from "./NotificationCenter";
 
 interface DashboardHeaderProps {
   totalTransactions?: number;
@@ -76,11 +83,26 @@ const DashboardHeader = ({
         </div>
 
         <div className="flex items-center space-x-2">
-          <Button variant="outline" size="sm" className="text-gray-600" asChild>
-            <Link to="/settings">
-              <Settings className="h-4 w-4 mr-2" />
-              Settings
-            </Link>
+          <HoverCard openDelay={200} closeDelay={300}>
+            <HoverCardTrigger asChild>
+              <Button variant="ghost" size="sm" className="relative">
+                <Bell className="h-4 w-4 text-gray-600" />
+                <span className="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full"></span>
+              </Button>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-[380px] p-0" align="end">
+              <NotificationCenter />
+            </HoverCardContent>
+          </HoverCard>
+
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleSettingsClick}
+            className="text-gray-600"
+          >
+            <Settings className="h-4 w-4 mr-2" />
+            Settings
           </Button>
 
           <Button

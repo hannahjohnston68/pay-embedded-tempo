@@ -22,49 +22,7 @@ interface NotificationCenterProps {
 }
 
 const NotificationCenter = ({
-  notifications = [
-    {
-      id: "1",
-      title: "Payment Received",
-      message: "You received a payment of $1,250.00 from Acme Corp.",
-      time: "10 minutes ago",
-      type: "payment",
-      read: false,
-    },
-    {
-      id: "2",
-      title: "Invoice Due Soon",
-      message: "Invoice #INV-2023-004 for Client XYZ is due in 3 days.",
-      time: "1 hour ago",
-      type: "reminder",
-      read: false,
-    },
-    {
-      id: "3",
-      title: "QuickBooks Sync Complete",
-      message:
-        "All transactions have been successfully synced with QuickBooks.",
-      time: "3 hours ago",
-      type: "system",
-      read: true,
-    },
-    {
-      id: "4",
-      title: "Payment Failed",
-      message: "Payment from Client ABC failed due to expired card.",
-      time: "5 hours ago",
-      type: "payment",
-      read: false,
-    },
-    {
-      id: "5",
-      title: "New Feature Available",
-      message: "Method Pay now supports international payments.",
-      time: "1 day ago",
-      type: "system",
-      read: true,
-    },
-  ],
+  notifications = [],
   onMarkAsRead = () => {},
   onMarkAllAsRead = () => {},
   onClearAll = () => {},
@@ -85,10 +43,10 @@ const NotificationCenter = ({
   };
 
   return (
-    <div className="w-full h-full bg-white border rounded-lg shadow-md flex flex-col overflow-hidden">
-      <div className="p-4 border-b flex items-center justify-between bg-gray-50">
+    <div className="w-full bg-white flex flex-col overflow-hidden max-h-[480px]">
+      <div className="p-3 border-b flex items-center justify-between bg-gray-50">
         <div className="flex items-center gap-2">
-          <h3 className="font-semibold text-lg">Notifications</h3>
+          <h3 className="font-semibold text-sm">Notifications</h3>
           {unreadCount > 0 && (
             <Badge variant="secondary" className="bg-blue-100 text-blue-800">
               {unreadCount} new
@@ -117,54 +75,13 @@ const NotificationCenter = ({
         </div>
       </div>
 
-      <Tabs defaultValue="all" className="flex-1 flex flex-col">
-        <TabsList className="px-4 pt-2 bg-white justify-start gap-2">
-          <TabsTrigger value="all" className="text-xs">
-            All
-          </TabsTrigger>
-          <TabsTrigger value="payment" className="text-xs">
-            Payments
-          </TabsTrigger>
-          <TabsTrigger value="reminder" className="text-xs">
-            Reminders
-          </TabsTrigger>
-          <TabsTrigger value="system" className="text-xs">
-            System
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="all" className="flex-1 p-0 m-0">
-          <NotificationList
-            notifications={notifications}
-            onMarkAsRead={onMarkAsRead}
-            getNotificationIcon={getNotificationIcon}
-          />
-        </TabsContent>
-
-        <TabsContent value="payment" className="flex-1 p-0 m-0">
-          <NotificationList
-            notifications={notifications.filter((n) => n.type === "payment")}
-            onMarkAsRead={onMarkAsRead}
-            getNotificationIcon={getNotificationIcon}
-          />
-        </TabsContent>
-
-        <TabsContent value="reminder" className="flex-1 p-0 m-0">
-          <NotificationList
-            notifications={notifications.filter((n) => n.type === "reminder")}
-            onMarkAsRead={onMarkAsRead}
-            getNotificationIcon={getNotificationIcon}
-          />
-        </TabsContent>
-
-        <TabsContent value="system" className="flex-1 p-0 m-0">
-          <NotificationList
-            notifications={notifications.filter((n) => n.type === "system")}
-            onMarkAsRead={onMarkAsRead}
-            getNotificationIcon={getNotificationIcon}
-          />
-        </TabsContent>
-      </Tabs>
+      <ScrollArea className="flex-1">
+        <NotificationList
+          notifications={notifications}
+          onMarkAsRead={onMarkAsRead}
+          getNotificationIcon={getNotificationIcon}
+        />
+      </ScrollArea>
     </div>
   );
 };

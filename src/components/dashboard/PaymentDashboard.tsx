@@ -2,7 +2,6 @@ import React from "react";
 import Layout from "../layout/Layout";
 import DashboardHeader from "./DashboardHeader";
 import OutstandingInvoices from "./OutstandingInvoices";
-import NotificationCenter from "./NotificationCenter";
 import { Card, CardContent } from "@/components/ui/card";
 import { TrendingUp, Clock } from "lucide-react";
 
@@ -68,8 +67,6 @@ const PaymentDashboard = () => {
                 </div>
               </CardContent>
             </Card>
-
-            <NotificationCenter />
           </div>
         </div>
       </div>
