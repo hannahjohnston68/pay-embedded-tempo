@@ -6,6 +6,7 @@ import PaymentDashboard from "./components/dashboard/PaymentDashboard";
 import OnboardingFlow from "./components/onboarding/OnboardingFlow";
 import InvoiceCreator from "./components/invoices/InvoiceCreator";
 import NotificationSettings from "./components/notifications/NotificationSettings";
+import SettingsPage from "./components/settings/SettingsPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             path="/notifications/settings"
             element={<NotificationSettings />}
           />
+          <Route path="/settings" element={<SettingsPage />} />
         </Routes>
         {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
       </>

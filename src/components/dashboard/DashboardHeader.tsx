@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -77,9 +78,12 @@ const DashboardHeader = ({
             size="sm"
             onClick={onSettingsClick}
             className="text-gray-600"
+            asChild
           >
-            <Settings className="h-4 w-4 mr-2" />
-            Settings
+            <Link to="/settings">
+              <Settings className="h-4 w-4 mr-2" />
+              Settings
+            </Link>
           </Button>
 
           <Button
@@ -126,17 +130,15 @@ const DashboardHeader = ({
           </CardContent>
         </Card>
 
-        <Card className="bg-purple-50 border-purple-100">
+        <Card className="bg-amber-50 border-amber-100">
           <CardContent className="p-4">
             <div className="flex flex-col">
-              <span className="text-sm font-medium text-purple-600">
-                QuickBooks Sync
+              <span className="text-sm font-medium text-amber-600">
+                Pending Payments
               </span>
-              <span className="text-2xl font-bold mt-1">
-                Last synced 2h ago
-              </span>
-              <span className="text-xs text-green-500 mt-1">
-                All transactions reconciled
+              <span className="text-2xl font-bold mt-1">$3,450.75</span>
+              <span className="text-xs text-gray-500 mt-1">
+                5 invoices awaiting payment
               </span>
             </div>
           </CardContent>
