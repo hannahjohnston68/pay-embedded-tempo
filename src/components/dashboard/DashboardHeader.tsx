@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -35,7 +35,6 @@ interface DashboardHeaderProps {
   onFilter?: () => void;
   onAddTransaction?: () => void;
   onExport?: () => void;
-  onSettingsClick?: () => void;
 }
 
 const DashboardHeader = ({
@@ -47,9 +46,13 @@ const DashboardHeader = ({
   onFilter = () => {},
   onAddTransaction = () => {},
   onExport = () => {},
-  onSettingsClick = () => {},
 }: DashboardHeaderProps) => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = React.useState("");
+
+  const handleSettingsClick = () => {
+    navigate("/notifications/settings");
+  };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -73,13 +76,7 @@ const DashboardHeader = ({
         </div>
 
         <div className="flex items-center space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={onSettingsClick}
-            className="text-gray-600"
-            asChild
-          >
+          <Button variant="outline" size="sm" className="text-gray-600" asChild>
             <Link to="/settings">
               <Settings className="h-4 w-4 mr-2" />
               Settings
