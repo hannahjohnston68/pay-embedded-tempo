@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -34,7 +35,6 @@ interface DashboardHeaderProps {
   onFilter?: () => void;
   onAddTransaction?: () => void;
   onExport?: () => void;
-  onSettingsClick?: () => void;
 }
 
 const DashboardHeader = ({
@@ -46,9 +46,13 @@ const DashboardHeader = ({
   onFilter = () => {},
   onAddTransaction = () => {},
   onExport = () => {},
-  onSettingsClick = () => {},
 }: DashboardHeaderProps) => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = React.useState("");
+
+  const handleSettingsClick = () => {
+    navigate('/notifications/settings');
+  };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -75,7 +79,7 @@ const DashboardHeader = ({
           <Button
             variant="outline"
             size="sm"
-            onClick={onSettingsClick}
+            onClick={handleSettingsClick}
             className="text-gray-600"
           >
             <Settings className="h-4 w-4 mr-2" />
