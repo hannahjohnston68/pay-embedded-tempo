@@ -24,7 +24,7 @@ const OnboardingProgress = ({
   ],
 }: OnboardingProgressProps) => {
   return (
-    <div className="w-full bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+    <div className="w-full bg-white p-6 rounded-xl shadow-sm border border-gray-100">
       <div className="flex items-center justify-between">
         {steps.map((step, index) => {
           const isActive = step.id === currentStep;
@@ -34,12 +34,12 @@ const OnboardingProgress = ({
             <React.Fragment key={step.id}>
               <div className="flex flex-col items-center">
                 <div
-                  className={`flex items-center justify-center w-8 h-8 rounded-full ${
+                  className={`flex items-center justify-center w-9 h-9 rounded-full shadow-sm ${
                     isCompleted
-                      ? "bg-green-600 text-white"
+                      ? "bg-gradient-to-br from-green-500 to-green-600 text-white"
                       : isActive
-                        ? "bg-[#0e2356] text-white"
-                        : "bg-gray-200 text-gray-500"
+                        ? "bg-gradient-to-br from-[#0e2356] to-[#1a3a7e] text-white"
+                        : "bg-gray-100 text-gray-400 border border-gray-200"
                   }`}
                 >
                   {isCompleted ? (
@@ -56,7 +56,7 @@ const OnboardingProgress = ({
                       ? "text-[#0e2356]"
                       : isCompleted
                         ? "text-green-600"
-                        : "text-gray-500"
+                        : "text-gray-400"
                   }`}
                 >
                   {step.name}
@@ -67,7 +67,7 @@ const OnboardingProgress = ({
                 <div
                   className={`h-[2px] flex-1 mx-2 ${
                     isCompleted && steps[index + 1].id <= currentStep
-                      ? "bg-green-600"
+                      ? "bg-gradient-to-r from-green-500 to-green-400"
                       : "bg-gray-200"
                   }`}
                 />
