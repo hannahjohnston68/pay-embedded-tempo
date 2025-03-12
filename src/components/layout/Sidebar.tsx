@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
-  LayoutGrid,
   Users,
   Calendar,
   FileText,
@@ -24,13 +23,13 @@ const Sidebar = () => {
       <nav className="flex-1 overflow-y-auto py-4">
         <div className="px-4 mb-4">
           <div className="text-xs uppercase text-white/50 font-semibold tracking-wider px-2 mb-2">
-            Main
+            Transactions
           </div>
           <ul className="space-y-1">
             {[
               {
-                name: "Dashboard",
-                icon: <LayoutGrid className="h-4 w-4" />,
+                name: "Invoices",
+                icon: <FileText className="h-4 w-4" />,
                 path: "/",
               },
               {
@@ -39,9 +38,9 @@ const Sidebar = () => {
                 path: "/payments",
               },
               {
-                name: "Invoices",
-                icon: <FileText className="h-4 w-4" />,
-                path: "/invoices",
+                name: "Sales Receipts",
+                icon: <Receipt className="h-4 w-4" />,
+                path: "/sales-receipts",
               },
             ].map((item) => (
               <li key={item.name}>
@@ -79,11 +78,6 @@ const Sidebar = () => {
                 name: "Estimates",
                 icon: <FileSpreadsheet className="h-4 w-4" />,
                 path: "/estimates",
-              },
-              {
-                name: "Sales Receipts",
-                icon: <Receipt className="h-4 w-4" />,
-                path: "/sales-receipts",
               },
             ].map((item) => (
               <li key={item.name}>

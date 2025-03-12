@@ -21,8 +21,67 @@ interface NotificationCenterProps {
   onClearAll?: () => void;
 }
 
+const sampleNotifications: NotificationProps[] = [
+  {
+    id: "1",
+    title: "Payment Received",
+    message: "Acme Corp paid invoice #INV-2023-001 for $3,500.00",
+    time: "Just now",
+    type: "payment",
+    read: false
+  },
+  {
+    id: "2",
+    title: "Invoice Due Soon",
+    message: "Invoice #INV-2023-008 for Stark Industries is due in 2 days",
+    time: "10 minutes ago",
+    type: "reminder",
+    read: false
+  },
+  {
+    id: "3",
+    title: "QuickBooks Sync Complete",
+    message: "All transactions have been successfully synced with QuickBooks",
+    time: "1 hour ago",
+    type: "system",
+    read: true
+  },
+  {
+    id: "4",
+    title: "Payment Overdue",
+    message: "Wayne Enterprises invoice #INV-2023-005 is 3 days overdue",
+    time: "2 hours ago",
+    type: "reminder",
+    read: false
+  },
+  {
+    id: "5",
+    title: "New Payment Method Added",
+    message: "Credit card ending in 4242 has been added to your account",
+    time: "3 hours ago",
+    type: "system",
+    read: true
+  },
+  {
+    id: "6",
+    title: "Payment Received",
+    message: "Oscorp Industries paid invoice #INV-2023-003 for $2,750.00",
+    time: "5 hours ago",
+    type: "payment",
+    read: true
+  },
+  {
+    id: "7",
+    title: "Invoice Viewed",
+    message: "Daily Planet has viewed invoice #INV-2023-012",
+    time: "1 day ago",
+    type: "system",
+    read: true
+  }
+];
+
 const NotificationCenter = ({
-  notifications = [],
+  notifications = sampleNotifications, // Use sample data as default
   onMarkAsRead = () => {},
   onMarkAllAsRead = () => {},
   onClearAll = () => {},
@@ -36,7 +95,7 @@ const NotificationCenter = ({
       case "reminder":
         return <Clock className="h-4 w-4 text-amber-500" />;
       case "system":
-        return <CreditCard className="h-4 w-4 text-blue-500" />;
+        return <Bell className="h-4 w-4 text-blue-500" />;
       default:
         return <Bell className="h-4 w-4 text-gray-500" />;
     }

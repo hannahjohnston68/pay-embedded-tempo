@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "../layout/Layout";
 import {
   LayoutGrid,
@@ -19,6 +20,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 const SettingsPage = () => {
+  const navigate = useNavigate();
+
   return (
     <Layout title="Settings">
       <div className="space-y-6 max-w-6xl mx-auto">
@@ -75,7 +78,10 @@ const SettingsPage = () => {
                       Configure how and when you receive notifications about
                       payment activities.
                     </p>
-                    <Button className="bg-[#0e2356] hover:bg-[#0e2356]/90 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors text-sm font-medium">
+                    <Button 
+                      className="bg-[#0e2356] hover:bg-[#0e2356]/90 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors text-sm font-medium"
+                      onClick={() => navigate('/notifications/settings')}
+                    >
                       Configure <ArrowRight className="h-4 w-4" />
                     </Button>
                   </div>
