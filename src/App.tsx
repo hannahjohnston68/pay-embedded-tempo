@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { useRoutes, Routes, Route } from "react-router-dom";
+import { Toaster } from "@/components/ui/toaster";
 import Home from "./components/home";
 import routes from "tempo-routes";
 import Invoices from "./components/dashboard/Invoices";
@@ -22,6 +23,7 @@ function App() {
           />
           <Route path="/settings" element={<SettingsPage />} />
         </Routes>
+        <Toaster />
         {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
       </>
     </Suspense>

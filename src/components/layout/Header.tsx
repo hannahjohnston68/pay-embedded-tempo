@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { 
   Bell, 
   HelpCircle, 
-  Settings, 
   LogOut, 
   User,
   DollarSign,
   Clock,
-  AlertCircle
+  AlertCircle,
+  Settings,
+  Sparkles // Add Sparkles icon for the toast
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast"; // Add this import
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -68,7 +70,33 @@ interface HeaderProps {
 
 const Header = ({ title }: HeaderProps) => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const unreadCount = sampleNotifications.filter(n => !n.read).length;
+
+  useEffect(() => {
+    // Show the toast after a short delay
+    const timer = setTimeout(() => {
+      toast({
+        title: "✨ Try Method Pay",
+        description: "Experience faster payments and seamless integration",
+        action: (
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={() => navigate('/onboarding')}
+            className="border-blue-200 hover:border-blue-300 hover:bg-blue-50"
+          >
+            <Sparkles className="h-4 w-4 mr-2 text-blue-500" />
+            Get Started
+          </Button>
+        ),
+        className: "bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-100",
+        duration: 5000, // Show for 5 seconds
+      });
+    }, 2000); // Show after 2 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const getNotificationIcon = (type: string) => {
     switch (type) {
@@ -150,15 +178,6 @@ const Header = ({ title }: HeaderProps) => {
           </PopoverContent>
         </Popover>
         
-        <Button
-          variant="ghost"
-          size="icon"
-          className="text-gray-600"
-          onClick={() => navigate('/settings')}
-        >
-          <Settings className="h-4 w-4" />
-        </Button>
-
         <Button
           variant="ghost"
           size="icon"

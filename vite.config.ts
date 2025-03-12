@@ -29,7 +29,8 @@ export default defineConfig({
     },
   },
   server: {
-    // @ts-ignore
+    port: 5173, // Add this to fix the port
+    strictPort: true, // Force the specified port
     allowedHosts: true,
   }
 });
