@@ -1,6 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Bell, HelpCircle, Settings, LogOut, User } from "lucide-react";
+import { 
+  Bell, 
+  HelpCircle, 
+  Settings, 
+  LogOut, 
+  User,
+  DollarSign,
+  Clock,
+  AlertCircle
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
