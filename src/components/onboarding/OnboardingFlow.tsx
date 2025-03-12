@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import Layout from "../layout/Layout";
 import OnboardingProgress from "./OnboardingProgress";
-import AccountSetupStep from "./AccountSetupStep";
 import PaymentIntroStep from "./PaymentIntroStep";
+import AccountSetupStep from "./AccountSetupStep";
 import MigrationStep from "./MigrationStep";
 import BankConnectionStep from "./BankConnectionStep";
 import VerificationStep from "./VerificationStep";
-import PreferencesStep from "./PreferencesStep";
 import TermsStep from "./TermsStep";
 import CompletionStep from "./CompletionStep";
 
 const OnboardingFlow = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 8;
+  const totalSteps = 7; // Reduced by 1
 
   const handleNext = () => {
     if (currentStep < totalSteps) {
@@ -29,30 +28,21 @@ const OnboardingFlow = () => {
   const renderStep = () => {
     switch (currentStep) {
       case 1:
-        return <AccountSetupStep onNext={handleNext} />;
+        return <PaymentIntroStep onNext={handleNext} />;
       case 2:
-        return <PaymentIntroStep onNext={handleNext} onBack={handleBack} />;
+        return <AccountSetupStep onNext={handleNext} onBack={handleBack} />;
       case 3:
-        return (
-          <MigrationStep
-            onNext={handleNext}
-            onBack={handleBack}
-            currentStep={currentStep}
-            totalSteps={totalSteps}
-          />
-        );
+        return <MigrationStep onNext={handleNext} onBack={handleBack} />;
       case 4:
         return <BankConnectionStep onNext={handleNext} onBack={handleBack} />;
       case 5:
         return <VerificationStep onNext={handleNext} onBack={handleBack} />;
       case 6:
-        return <PreferencesStep onNext={handleNext} onBack={handleBack} />;
-      case 7:
         return <TermsStep onNext={handleNext} onBack={handleBack} />;
-      case 8:
-        return <CompletionStep onNext={handleNext} />;
+      case 7:
+        return <CompletionStep />;
       default:
-        return <AccountSetupStep onNext={handleNext} />;
+        return <PaymentIntroStep onNext={handleNext} />;
     }
   };
 

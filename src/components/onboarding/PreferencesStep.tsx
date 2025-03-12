@@ -5,25 +5,15 @@ import {
   CardTitle,
   CardDescription,
   CardContent,
-  CardFooter,
 } from "../ui/card";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Switch } from "../ui/switch";
-import { Button } from "../ui/button";
-import { CreditCard, Clock, Wallet, BellRing, ArrowRight } from "lucide-react";
+import { CreditCard, Clock, Wallet, BellRing } from "lucide-react";
 
-interface PreferencesStepProps {
-  onNext?: () => void;
-  onBack?: () => void;
-}
-
-const PreferencesStep = ({
-  onNext = () => {},
-  onBack = () => {},
-}: PreferencesStepProps) => {
+const PreferencesStep = () => {
   return (
-    <div className="w-full max-w-4xl mx-auto bg-white p-6 rounded-xl">
-      <div className="mb-6 text-center">
+    <div className="w-full max-w-4xl mx-auto">
+      <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900">
           Payment Preferences
         </h1>
@@ -182,16 +172,6 @@ const PreferencesStep = ({
           </CardContent>
         </Card>
       </div>
-
-      <CardFooter className="flex justify-between mt-8 px-0">
-        <Button variant="outline" onClick={onBack}>
-          Back
-        </Button>
-        <Button onClick={onNext} className="gap-2">
-          Continue
-          <ArrowRight className="h-4 w-4" />
-        </Button>
-      </CardFooter>
     </div>
   );
 };

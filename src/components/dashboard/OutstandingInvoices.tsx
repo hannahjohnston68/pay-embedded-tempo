@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "@/components/ui/use-toast";
 import {
   Search,
   Filter,
@@ -10,6 +12,16 @@ import {
   XCircle,
   Clock,
 } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import {
   Table,
   TableBody,
@@ -104,8 +116,61 @@ const OutstandingInvoices = ({
   onSendReminder = (id) => console.log(`Send reminder for invoice ${id}`),
   onMarkAsPaid = (id) => console.log(`Mark invoice ${id} as paid`),
 }: OutstandingInvoicesProps) => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [markAsPaidDialog, setMarkAsPaidDialog] = useState<{ open: boolean; invoiceId: string | null }>({
+    open: false,
+    invoiceId: null,
+  });
+
+  const handleViewInvoice = (id: string) => {
+    navigate(`/invoices/${id}`);
+  };
+
+  const handleSendReminder = async (id: string) => {
+    try {
+      // In a real app, this would be an API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      toast({
+        title: "Reminder Sent",
+        description: `Payment reminder sent for invoice ${id}`,
+        duration: 3000,
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send payment reminder. Please try again.",
+        variant: "destructive",
+        duration: 3000,
+      });
+    }
+  };
+
+  const handleMarkAsPaid = async (id: string) => {
+    try {
+      // In a real app, this would be an API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      toast({
+        title: "Invoice Updated",
+        description: `Invoice ${id} has been marked as paid`,
+        duration: 3000,
+      });
+      
+      setMarkAsPaidDialog({ open: false, invoiceId: null });
+      
+      // In a real app, you would update the invoice list or trigger a refresh
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to update invoice status. Please try again.",
+        variant: "destructive",
+        duration: 3000,
+      });
+    }
+  };
 
   const filteredInvoices = invoices.filter((invoice) => {
     const matchesSearch =
@@ -275,17 +340,19 @@ const OutstandingInvoices = ({
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
                         <DropdownMenuItem
-                          onClick={() => onViewInvoice(invoice.id)}
+                          onClick={() => handleViewInvoice(invoice.id)}
                         >
                           View Details
                         </DropdownMenuItem>
                         <DropdownMenuItem
-                          onClick={() => onSendReminder(invoice.id)}
+                          onClick={() => handleSendReminder(invoice.id)}
+                          disabled={invoice.status === "paid"}
                         >
                           Send Reminder
                         </DropdownMenuItem>
                         <DropdownMenuItem
-                          onClick={() => onMarkAsPaid(invoice.id)}
+                          onClick={() => setMarkAsPaidDialog({ open: true, invoiceId: invoice.id })}
+                          disabled={invoice.status === "paid"}
                         >
                           Mark as Paid
                         </DropdownMenuItem>
@@ -313,6 +380,28 @@ const OutstandingInvoices = ({
           View All Invoices
         </Button>
       </div>
+
+      <AlertDialog 
+        open={markAsPaidDialog.open} 
+        onOpenChange={(open) => setMarkAsPaidDialog({ open, invoiceId: null })}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Mark Invoice as Paid</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to mark this invoice as paid? This action will update the invoice status and sync with QuickBooks.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => markAsPaidDialog.invoiceId && handleMarkAsPaid(markAsPaidDialog.invoiceId)}
+            >
+              Confirm
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };

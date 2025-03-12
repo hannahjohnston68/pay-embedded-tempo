@@ -1,5 +1,6 @@
 import React from "react";
 import { CheckCircle, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,14 +13,18 @@ import {
 import { Progress } from "@/components/ui/progress";
 
 interface CompletionStepProps {
-  onNext?: () => void;
   businessName?: string;
 }
 
 const CompletionStep = ({
-  onNext = () => {},
   businessName = "Your Business",
 }: CompletionStepProps) => {
+  const navigate = useNavigate();
+
+  const handleGoToDashboard = () => {
+    navigate('/');  // Root path is mapped to Invoices dashboard in App.tsx
+  };
+
   return (
     <div className="flex flex-col items-center justify-center w-full h-full bg-white p-8">
       <div className="max-w-3xl w-full">
@@ -134,7 +139,7 @@ const CompletionStep = ({
         </Card>
 
         <CardFooter className="flex justify-center md:justify-end">
-          <Button onClick={onNext} className="px-6">
+          <Button onClick={handleGoToDashboard} className="px-6">
             Go to Dashboard <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </CardFooter>

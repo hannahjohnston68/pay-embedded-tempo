@@ -98,8 +98,7 @@ const Invoices = () => {
           </Card>
         </div>
 
-        <div className="flex items-center justify-between">
-          <h2 className="text-xl font-semibold">Outstanding Invoices</h2>
+        <div className="flex items-center justify-end">
           <Button 
             size="sm" 
             className="bg-[#0e2356] hover:bg-[#0e2356]/90"

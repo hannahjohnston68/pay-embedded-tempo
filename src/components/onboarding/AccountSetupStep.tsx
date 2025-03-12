@@ -50,18 +50,22 @@ const formSchema = z.object({
 
 interface AccountSetupStepProps {
   onNext?: () => void;
+  onBack?: () => void;
 }
 
-const AccountSetupStep = ({ onNext = () => {} }: AccountSetupStepProps) => {
+const AccountSetupStep = ({ 
+  onNext = () => {}, 
+  onBack = () => {}
+}: AccountSetupStepProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      businessName: "",
-      businessType: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
+      businessName: "Acme Corporation",
+      businessType: "corporation",
+      firstName: "John",
+      lastName: "Smith",
+      email: "john.smith@acmecorp.com",
+      phone: "(555) 123-4567",
     },
   });
 
@@ -238,8 +242,19 @@ const AccountSetupStep = ({ onNext = () => {} }: AccountSetupStepProps) => {
                 </div>
               </div>
 
-              <CardFooter className="flex justify-end px-0">
-                <Button type="submit" size="lg">
+              <CardFooter className="flex justify-between px-0">
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  onClick={onBack}
+                >
+                  Back
+                </Button>
+                <Button 
+                  type="submit" 
+                  size="lg"
+                  className="bg-blue-600 hover:bg-blue-700"
+                >
                   Continue to Payment Setup
                 </Button>
               </CardFooter>
