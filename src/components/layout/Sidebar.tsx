@@ -31,28 +31,45 @@ const Sidebar = () => {
                 name: "Invoices",
                 icon: <FileText className="h-4 w-4" />,
                 path: "/",
+                isExternal: false,
               },
               {
                 name: "Payments",
                 icon: <CreditCard className="h-4 w-4" />,
-                path: "/payments",
+                path: "https://checkout.stripe.dev/checkout",
+                isExternal: true,
               },
               {
                 name: "Sales Receipts",
                 icon: <Receipt className="h-4 w-4" />,
                 path: "/sales-receipts",
+                isExternal: false,
               },
             ].map((item) => (
               <li key={item.name}>
-                <Link
-                  to={item.path}
-                  className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-sm font-medium"
-                >
-                  <div className="bg-white/10 p-1.5 rounded-md">
-                    {item.icon}
-                  </div>
-                  <span>{item.name}</span>
-                </Link>
+                {item.isExternal ? (
+                  <a
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-sm font-medium"
+                  >
+                    <div className="bg-white/10 p-1.5 rounded-md">
+                      {item.icon}
+                    </div>
+                    <span>{item.name}</span>
+                  </a>
+                ) : (
+                  <Link
+                    to={item.path}
+                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-sm font-medium"
+                  >
+                    <div className="bg-white/10 p-1.5 rounded-md">
+                      {item.icon}
+                    </div>
+                    <span>{item.name}</span>
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -68,28 +85,45 @@ const Sidebar = () => {
                 name: "Contacts",
                 icon: <Users className="h-4 w-4" />,
                 path: "/contacts",
+                isExternal: false,
               },
               {
                 name: "Activities",
                 icon: <Calendar className="h-4 w-4" />,
                 path: "/activities",
+                isExternal: false,
               },
               {
                 name: "Estimates",
                 icon: <FileSpreadsheet className="h-4 w-4" />,
                 path: "/estimates",
+                isExternal: false,
               },
             ].map((item) => (
               <li key={item.name}>
-                <Link
-                  to={item.path}
-                  className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-sm font-medium"
-                >
-                  <div className="bg-white/10 p-1.5 rounded-md">
-                    {item.icon}
-                  </div>
-                  <span>{item.name}</span>
-                </Link>
+                {item.isExternal ? (
+                  <a
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-sm font-medium"
+                  >
+                    <div className="bg-white/10 p-1.5 rounded-md">
+                      {item.icon}
+                    </div>
+                    <span>{item.name}</span>
+                  </a>
+                ) : (
+                  <Link
+                    to={item.path}
+                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-sm font-medium"
+                  >
+                    <div className="bg-white/10 p-1.5 rounded-md">
+                      {item.icon}
+                    </div>
+                    <span>{item.name}</span>
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -105,38 +139,57 @@ const Sidebar = () => {
                 name: "Accounts",
                 icon: <Landmark className="h-4 w-4" />,
                 path: "/accounts",
+                isExternal: false,
               },
               {
                 name: "Send Email",
                 icon: <Mail className="h-4 w-4" />,
                 path: "/send-email",
+                isExternal: false,
               },
               {
                 name: "Sales Orders",
                 icon: <ClipboardList className="h-4 w-4" />,
                 path: "/sales-orders",
+                isExternal: false,
               },
               {
                 name: "Field Crew",
                 icon: <Truck className="h-4 w-4" />,
                 path: "/field-crew",
+                isExternal: false,
               },
               {
                 name: "Proposals",
                 icon: <FileCheck className="h-4 w-4" />,
                 path: "/proposals",
+                isExternal: false,
               },
             ].map((item) => (
               <li key={item.name}>
-                <Link
-                  to={item.path}
-                  className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-sm font-medium"
-                >
-                  <div className="bg-white/10 p-1.5 rounded-md">
-                    {item.icon}
-                  </div>
-                  <span>{item.name}</span>
-                </Link>
+                {item.isExternal ? (
+                  <a
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-sm font-medium"
+                  >
+                    <div className="bg-white/10 p-1.5 rounded-md">
+                      {item.icon}
+                    </div>
+                    <span>{item.name}</span>
+                  </a>
+                ) : (
+                  <Link
+                    to={item.path}
+                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-sm font-medium"
+                  >
+                    <div className="bg-white/10 p-1.5 rounded-md">
+                      {item.icon}
+                    </div>
+                    <span>{item.name}</span>
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

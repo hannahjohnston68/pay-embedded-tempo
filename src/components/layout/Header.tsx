@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { 
-  Bell, 
-  HelpCircle, 
-  LogOut, 
+import {
+  Bell,
+  HelpCircle,
+  LogOut,
   User,
   DollarSign,
   Clock,
@@ -80,9 +80,9 @@ const Header = ({ title }: HeaderProps) => {
         title: "✨ Try Method Pay",
         description: "Experience faster payments and seamless integration",
         action: (
-          <Button 
-            variant="outline" 
-            size="sm" 
+          <Button
+            variant="outline"
+            size="sm"
             onClick={() => navigate('/onboarding')}
             className="border-blue-200 hover:border-blue-300 hover:bg-blue-50"
           >
@@ -118,6 +118,20 @@ const Header = ({ title }: HeaderProps) => {
       </div>
 
       <div className="flex items-center gap-3">
+        <a
+          href="https://www.furever.dev/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center"
+        >
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-gray-600"
+          >
+            <Settings className="h-4 w-4" />
+          </Button>
+        </a>
         <Popover>
           <PopoverTrigger asChild>
             <Button
@@ -177,7 +191,7 @@ const Header = ({ title }: HeaderProps) => {
             </div>
           </PopoverContent>
         </Popover>
-        
+
         <Button
           variant="ghost"
           size="icon"
