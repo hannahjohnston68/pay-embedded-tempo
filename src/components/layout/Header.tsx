@@ -83,7 +83,7 @@ const Header = ({ title }: HeaderProps) => {
           <Button
             variant="outline"
             size="sm"
-            onClick={() => navigate('/onboarding')}
+            onClick={() => window.open('https://www.furever.dev', '_blank')}
             className="border-blue-200 hover:border-blue-300 hover:bg-blue-50"
           >
             <Sparkles className="h-4 w-4 mr-2 text-blue-500" />

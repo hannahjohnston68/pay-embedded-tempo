@@ -7,6 +7,7 @@ import Invoices from "./components/dashboard/Invoices";
 import OnboardingFlow from "./components/onboarding/OnboardingFlow";
 import InvoiceCreator from "./components/invoices/InvoiceCreator";
 import InvoiceView from "./components/invoices/InvoiceView";
+import InvoiceDetail from "./components/invoices/InvoiceDetail";
 import NotificationSettings from "./components/notifications/NotificationSettings";
 import SettingsPage from "./components/settings/SettingsPage";
 import PayoutSchedule from "./components/settings/PayoutSchedule";
@@ -25,7 +26,8 @@ function App() {
           <Route path="/" element={<Invoices />} />
           <Route path="/onboarding" element={<OnboardingFlow />} />
           <Route path="/invoices/create" element={<InvoiceCreator />} />
-          <Route path="/invoices/:id" element={<InvoiceView />} />
+          <Route path="/invoices/:id" element={<InvoiceDetail />} />
+          <Route path="/invoices/view/:id" element={<InvoiceView />} />
           <Route
             path="/notifications/settings"
             element={<NotificationSettings />}
